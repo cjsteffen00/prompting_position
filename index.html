@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Position Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+        <header class="header">
+            <svg class="header-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" fill="#fff"/>
+                <text x="50" y="72" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="70" fill="#C5050C">W</text>
+            </svg>
+            <h1>AI Prompt Position Tool</h1>
+            <p>Generate expert-level AI prompts tailored to your professional role</p>
+        </header>
+
+        <section id="api-key-section" class="card api-key-section">
+            <div id="api-key-form">
+                <label for="api-key-input">Google Gemini API Key (free)</label>
+                <div class="api-key-row">
+                    <input type="password" id="api-key-input" placeholder="AIzaSy...">
+                    <button id="save-key-btn" class="btn-secondary">Save Key</button>
+                </div>
+                <p class="hint">Your key is stored only in this tab's session. It is never sent anywhere except Google's Gemini API.</p>
+
+                <details class="setup-guide">
+                    <summary>How do I get a free API key? (step-by-step guide)</summary>
+                    <div class="guide-steps">
+                        <p><strong>An API key lets this tool generate your personalized results. It's 100% free and takes about 2 minutes. No credit card needed!</strong></p>
+                        <ol>
+                            <li>Go to <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a></li>
+                            <li>Sign in with your <strong>Google account</strong> (the same one you use for Gmail, YouTube, etc.)</li>
+                            <li>Click the blue <strong>"Create API key"</strong> button</li>
+                            <li>Select <strong>"Create API key in new project"</strong></li>
+                            <li>Your key will appear on screen — click the <strong>copy icon</strong> to copy it</li>
+                            <li>Come back here, <strong>paste it</strong> into the field above, and click <strong>"Save Key"</strong></li>
+                        </ol>
+                        <p class="guide-note"><strong>This is completely free.</strong> Google's Gemini API free tier includes up to 15 requests per minute with no credit card or payment required. Your key stays private in this browser tab and is never stored permanently.</p>
+                    </div>
+                </details>
+            </div>
+            <div id="api-key-saved" class="hidden">
+                <span class="success-text">&#10003; API key saved</span>
+                <button id="change-key-btn" class="btn-link">Change</button>
+            </div>
+        </section>
+
+        <section class="card input-section">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="position-select">Your Position</label>
+                    <select id="position-select">
+                        <option value="">-- Select your role --</option>
+                        <option value="Software Engineer">Software Engineer</option>
+                        <option value="Teacher / Educator">Teacher / Educator</option>
+                        <option value="Marketing Professional">Marketing Professional</option>
+                        <option value="Healthcare Professional">Healthcare Professional</option>
+                        <option value="Student">Student</option>
+                        <option value="Legal Professional">Legal Professional</option>
+                        <option value="Finance Professional">Finance Professional</option>
+                        <option value="Data Scientist">Data Scientist</option>
+                        <option value="Designer (UX/UI/Graphic)">Designer (UX/UI/Graphic)</option>
+                        <option value="Project Manager">Project Manager</option>
+                        <option value="Writer / Content Creator">Writer / Content Creator</option>
+                        <option value="HR Professional">HR Professional</option>
+                        <option value="Sales Professional">Sales Professional</option>
+                        <option value="Researcher / Academic">Researcher / Academic</option>
+                        <option value="Entrepreneur / Startup Founder">Entrepreneur / Startup Founder</option>
+                        <option value="Customer Support">Customer Support</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input type="text" id="custom-position" class="hidden" placeholder="Enter your role">
+                </div>
+                <div class="form-group">
+                    <label for="task-input">Describe Your Task</label>
+                    <textarea id="task-input" rows="5" placeholder="Describe what you need help with. For example: 'I need to write unit tests for a React component' or 'I need to create a lesson plan for teaching fractions to 4th graders'"></textarea>
+                </div>
+            </div>
+            <button id="generate-btn" class="btn-primary" disabled>Generate Prompt &amp; Recommendation</button>
+        </section>
+
+        <div id="error-message" class="error-message hidden"></div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Generating your tailored prompt...</p>
+        </div>
+
+        <section id="results" class="results hidden">
+            <div class="card result-card">
+                <div class="card-header">
+                    <h2>Your Tailored Prompt</h2>
+                    <button id="copy-btn" class="btn-copy">Copy to Clipboard</button>
+                </div>
+                <div id="generated-prompt" class="prompt-output"></div>
+            </div>
+            <div class="card result-card">
+                <div class="card-header">
+                    <h2>Recommended AI Tool</h2>
+                </div>
+                <div class="tool-recommendation">
+                    <span id="tool-name" class="tool-badge"></span>
+                    <p id="tool-reasoning"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
